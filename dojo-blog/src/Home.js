@@ -21,7 +21,7 @@ const Home = () => {
     useEffect(()=>{
         console.log('use effect hook ran');
         console.log(blogs);
-    });
+    },[name]);
 
     return ( 
         <div className="home">
