@@ -1,12 +1,9 @@
 import { useState } from 'react'; 
+import BlogList from './BlogList';
 
 const Home = () => {
 
     const[likes,setLikes] = useState(0);
-
-    const handleCLick =()=>{
-        setLikes(likes+1);
-    }
 
     const [blogs,setBlogs] = useState([
         // each object represent a single blogs.
@@ -15,16 +12,15 @@ const Home = () => {
         {id:3 , title:"Third Blog", body:"This is the third blog",author:'momonuske'}
     ]);
 
+    const handleCLick =()=>{
+        setLikes(likes+1);
+    }
+
     return ( 
         <div className="home">
             <h1>total likes { likes } </h1>
             <button onClick={handleCLick}>like us</button>
-            {blogs.map((blog)=>(
-                <div className="blog-preview" key={blog.id}>
-                    <h2>{ blog.title}</h2>
-                    <p>Written by {blog.author}</p>
-                </div>
-            ))}
+            <BlogList blogs={blogs} title="All Blogs"/>
         </div>
      );
 }
