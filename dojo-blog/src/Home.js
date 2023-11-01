@@ -19,6 +19,12 @@ const Home = () => {
         <div className="home">
             <h1>total likes { likes } </h1>
             <button onClick={handleCLick}>like us</button>
+            {blogs.map((blog)=>(
+                <div className="blog-preview" key={blog.id}>
+                    <h2>{ blog.title}</h2>
+                    <p>Written by {blog.author}</p>
+                </div>
+            ))}
         </div>
      );
 }
