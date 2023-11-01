@@ -1,7 +1,10 @@
-const Home = () => {
+import { useState } from 'react'; 
 
-    const handleClick = (e) => {
-        console.log('hello moda siripali',e);
+const Home = () => {
+    //let name='mario';
+    const [name,setName] = useState('mario');
+    const handleClick = () => {
+        setName('luffy');
     }
 
     const handleClickAgain = (name, e) =>{
@@ -11,8 +14,8 @@ const Home = () => {
     return ( 
         <div className="home">
             <h1>this is home page</h1>
+            <p>{name}</p>
             <button onClick={handleClick}>click me</button>
-            <button onClick={(e)=>handleClickAgain('chamod',e)}>click me again</button>
         </div>
      );
 }
