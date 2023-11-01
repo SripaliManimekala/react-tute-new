@@ -12,10 +12,16 @@ const Home = () => {
         {id:3 , title:"Third Blog", body:"This is the third blog",author:'momonuske'}
     ]);
 
+    const handleDelete=(id)=>{
+        // return a new filtered array without deteled item 
+        const newBlogs = blogs.filter((blog)=>blog.id!==id);
+        setBlogs(newBlogs);
+    }
+
     return ( 
         <div className="home">
             {/* taking all blogs in */}
-            <BlogList blogs={blogs} title="All Blogs"/>
+            <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>
             <BlogList blogs={blogs.filter((blog)=>blog.author==='momonuske')} title="Momonuske's Blogs"/>
             <BlogList blogs={blogs.filter((blog)=>blog.author==='shanks')} title="Shanks's Blogs"/>
         </div>
