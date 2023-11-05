@@ -3,12 +3,7 @@ import BlogList from './BlogList';
 
 const Home = () => {
 
-    const [blogs,setBlogs] = useState([
-        // each object represent a single blogs.
-        {id:1 , title:"First Blog", body:"This is the first blog",author:'momonuske'},
-        {id:2 , title:"Second Blog", body:"This is the second blog",author:'shanks'},
-        {id:3 , title:"Third Blog", body:"This is the third blog",author:'momonuske'}
-    ]);
+    const [blogs,setBlogs] = useState(null);
 
     const [name,setName] = useState('Chopper');
 
@@ -19,16 +14,20 @@ const Home = () => {
     }
     //this hook runs every time there is a re-render
     useEffect(()=>{
-        console.log('use effect hook ran');
-        console.log(blogs);
-    },[name]);
+        fetch('http://localhost:8000/blogs')
+        .then(res=>{
+           return res.json();
+        })
+        .then(data=>{
+            console.log(data);
+            setBlogs(data);
+        })
+    },[]);
 
     return ( 
         <div className="home">
             {/* taking all blogs in */}
-            <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>
-            <button onClick={()=>setName('Jimbei')}>Change name</button>
-            <p>{ name }</p>
+            {blogs && <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>}
         </div>
      );
 }
