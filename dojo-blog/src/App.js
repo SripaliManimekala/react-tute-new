@@ -15,6 +15,9 @@ function App() {
             <Route path="/">
               <Home />
             </Route>
+            <Route path="/create">
+              <Create />
+            </Route>
           </Switch>
         </div>
       </div>
